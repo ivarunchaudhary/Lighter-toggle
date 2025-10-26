@@ -1,0 +1,201 @@
+.lighter {
+  position: relative;
+  width: 120px;
+  height: 180px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  outline: none;
+  transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.lighter:focus-visible {
+  box-shadow: 0 0 0 4px rgba(108, 143, 255, 0.35);
+  border-radius: 18px;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 10px;
+  width: 90px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--lighter-shadow);
+  filter: blur(12px);
+  opacity: 0.7;
+  transition: opacity var(--transition-duration) ease;
+}
+
+.case {
+  position: absolute;
+  bottom: 18px;
+  width: 80px;
+  height: 108px;
+  border-radius: 14px 14px 20px 20px;
+  background: var(--lighter-body);
+  box-shadow: inset 0 -12px 18px rgba(0, 0, 0, 0.18), 0 16px 22px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.window {
+  position: absolute;
+  top: 18px;
+  width: 60px;
+  height: 30px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.wheel {
+  position: absolute;
+  top: 14px;
+  width: 36px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #333a4d 0%, #1f2432 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.28);
+}
+
+.fuel {
+  position: absolute;
+  bottom: 30px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.28);
+}
+
+.lid {
+  position: absolute;
+  top: 28px;
+  width: 96px;
+  height: 56px;
+  background: var(--lighter-lid);
+  border-radius: 18px 18px 10px 10px;
+  transform-origin: 12px 46px;
+  box-shadow: inset 0 -10px 12px rgba(0, 0, 0, 0.16);
+  transition: transform var(--transition-duration) var(--transition-timing);
+  display: grid;
+  place-items: center;
+}
+
+.lidTop {
+  width: 66px;
+  height: 22px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 -6px 9px rgba(0, 0, 0, 0.18);
+}
+
+.flame {
+  position: absolute;
+  top: 38px;
+  width: 44px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  transform: translateY(10px) scale(0.9);
+  transform-origin: bottom;
+  transition: transform var(--transition-duration) var(--transition-timing),
+    opacity var(--transition-duration) ease;
+}
+
+.outerFlame,
+.innerFlame,
+.coreFlame {
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  transform-origin: bottom;
+}
+
+.outerFlame {
+  width: 44px;
+  height: 88px;
+  background: radial-gradient(circle at 50% 30%, var(--flame-outer), #df5612 70%);
+  filter: blur(1px);
+  opacity: 0.7;
+  animation: flicker 1.6s ease-in-out infinite;
+}
+
+.innerFlame {
+  position: absolute;
+  width: 30px;
+  height: 62px;
+  background: radial-gradient(circle at 50% 30%, var(--flame-outer), #f5a623 80%);
+  opacity: 0.85;
+  animation: flicker 1.8s ease-in-out infinite reverse;
+}
+
+.coreFlame {
+  position: absolute;
+  width: 18px;
+  height: 52px;
+  background: radial-gradient(circle at 50% 30%, var(--flame-core), #ff9f1c 90%);
+  box-shadow: 0 0 26px 10px var(--flame-glow);
+  opacity: 0.95;
+  animation: flicker 2.2s ease-in-out infinite;
+}
+
+.glow {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 169, 64, 0.35) 0%, transparent 70%);
+  filter: blur(12px);
+  opacity: 1;
+  transition: opacity var(--transition-duration) ease;
+}
+
+
+.isClosed .lid {
+  transform: rotate(0deg) translate(0, 0);
+}
+
+.isClosed .flame {
+  transform: translateY(30px) scale(0.2);
+  opacity: 0;
+}
+
+.isClosed .glow,
+.isClosed .shadow {
+  opacity: 0.15;
+}
+
+.isClosed .case {
+  transform: translateY(4px);
+}
+
+.isOpen .lid {
+  transform: rotate(-96deg) translate(-26px, 18px);
+}
+
+.isOpen .flame {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.isOpen .glow,
+.isOpen .shadow {
+  opacity: 1;
+}
+
+@keyframes flicker {
+  0% {
+    transform: scaleY(0.95) translateY(1px);
+  }
+  50% {
+    transform: scaleY(1.05) translateY(-3px);
+  }
+  100% {
+    transform: scaleY(0.95) translateY(1px);
+  }
+}
