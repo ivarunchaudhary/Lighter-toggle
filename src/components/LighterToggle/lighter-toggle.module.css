@@ -1,7 +1,7 @@
 .lighter {
   position: relative;
-  width: 120px;
-  height: 180px;
+  width: 140px;
+  height: 220px;
   padding: 0;
   border: none;
   background: transparent;
@@ -10,192 +10,465 @@
   place-items: center;
   outline: none;
   transition: transform var(--transition-duration) var(--transition-timing);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+}
+
+.lighter:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
+}
+
+.lighter:active {
+  transform: translateY(0);
 }
 
 .lighter:focus-visible {
-  box-shadow: 0 0 0 4px rgba(108, 143, 255, 0.35);
-  border-radius: 18px;
+  outline: 4px solid rgba(108, 143, 255, 0.4);
+  outline-offset: 4px;
+  border-radius: 20px;
 }
 
 .shadow {
   position: absolute;
-  bottom: 10px;
-  width: 90px;
-  height: 24px;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
   border-radius: 50%;
-  background: var(--lighter-shadow);
-  filter: blur(12px);
-  opacity: 0.7;
-  transition: opacity var(--transition-duration) ease;
+  background: radial-gradient(ellipse at center, var(--lighter-shadow), transparent 70%);
+  filter: blur(16px);
+  opacity: 0.6;
+  transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
 }
 
 .case {
   position: absolute;
-  bottom: 18px;
-  width: 80px;
-  height: 108px;
-  border-radius: 14px 14px 20px 20px;
+  bottom: 27px;
+  left: 50%;
+  transform: translateX(calc(-50% + 3px));
+  width: 85px;
+  height: 115px;
+  border-radius: 14px 14px 22px 22px;
   background: var(--lighter-body);
-  box-shadow: inset 0 -12px 18px rgba(0, 0, 0, 0.18), 0 16px 22px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 -16px 24px rgba(0, 0, 0, 0.2),
+    inset 4px 0 12px rgba(0, 0, 0, 0.1),
+    inset -4px 0 8px rgba(255, 255, 255, 0.1),
+    0 20px 30px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   transition: transform var(--transition-duration) var(--transition-timing);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.case::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+}
+
+.case::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 12px;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  border-radius: 6px;
+  pointer-events: none;
 }
 
 .window {
   position: absolute;
-  top: 18px;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 60px;
-  height: 30px;
+  height: 32px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.15),
+    inset 0 -2px 6px rgba(255, 255, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.window::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  right: 4px;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 10px 10px 0 0;
 }
 
 .wheel {
   position: absolute;
-  top: 14px;
-  width: 36px;
-  height: 8px;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38px;
+  height: 9px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #333a4d 0%, #1f2432 100%);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.28);
+  background: linear-gradient(180deg, #3d4556 0%, #1f2432 50%, #2a2f3d 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wheel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  border-radius: 999px 999px 0 0;
 }
 
 .fuel {
   position: absolute;
-  bottom: 30px;
-  width: 38px;
-  height: 38px;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.28);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.15), transparent 60%);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.2),
+    inset 0 4px 12px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .lid {
   position: absolute;
-  top: 28px;
-  width: 96px;
-  height: 56px;
+  bottom: 132px;
+  left: 30px;
+  width: 86px;
+  height: 54px;
   background: var(--lighter-lid);
-  border-radius: 18px 18px 10px 10px;
-  transform-origin: 12px 46px;
-  box-shadow: inset 0 -10px 12px rgba(0, 0, 0, 0.16);
+  border-radius: 14px 14px 8px 8px;
+  transform-origin: 7px 48px;
+  box-shadow:
+    inset 0 -14px 18px rgba(0, 0, 0, 0.2),
+    inset 0 2px 8px rgba(255, 255, 255, 0.15),
+    inset 4px 0 10px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform var(--transition-duration) var(--transition-timing);
   display: grid;
   place-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  z-index: 5;
 }
 
-.lidTop {
-  width: 66px;
+.lid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+  border-radius: 20px 20px 0 0;
+  pointer-events: none;
+}
+
+.lid::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 16px;
+  height: 30px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.lidEdge {
+  width: 64px;
   height: 22px;
+  border-radius: 11px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow:
+    inset 0 -8px 12px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lidEdge::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 -6px 9px rgba(0, 0, 0, 0.18);
 }
 
 .flame {
   position: absolute;
-  top: 38px;
-  width: 44px;
-  height: 88px;
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px) scale(0.9);
+  width: 52px;
+  height: 100px;
   display: grid;
   place-items: center;
-  transform: translateY(10px) scale(0.9);
-  transform-origin: bottom;
+  transform-origin: bottom center;
   transition: transform var(--transition-duration) var(--transition-timing),
     opacity var(--transition-duration) ease;
+  filter: drop-shadow(0 0 20px var(--flame-glow));
+  z-index: 3;
 }
 
 .outerFlame,
 .innerFlame,
 .coreFlame {
   border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
-  transform-origin: bottom;
+  transform-origin: bottom center;
 }
 
 .outerFlame {
-  width: 44px;
-  height: 88px;
-  background: radial-gradient(circle at 50% 30%, var(--flame-outer), #df5612 70%);
-  filter: blur(1px);
-  opacity: 0.7;
-  animation: flicker 1.6s ease-in-out infinite;
+  width: 52px;
+  height: 100px;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    var(--flame-outer) 0%,
+    #ff6b35 35%,
+    #df5612 70%,
+    #b8440a 100%
+  );
+  filter: blur(2px);
+  opacity: 0.75;
+  animation: flicker 2s ease-in-out infinite;
 }
 
 .innerFlame {
   position: absolute;
-  width: 30px;
-  height: 62px;
-  background: radial-gradient(circle at 50% 30%, var(--flame-outer), #f5a623 80%);
-  opacity: 0.85;
-  animation: flicker 1.8s ease-in-out infinite reverse;
+  width: 36px;
+  height: 72px;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #ff9842 0%,
+    #ff8333 40%,
+    #f5a623 80%,
+    #e88c00 100%
+  );
+  opacity: 0.9;
+  filter: blur(0.5px);
+  animation: flicker 2.4s ease-in-out infinite reverse;
 }
 
 .coreFlame {
   position: absolute;
-  width: 18px;
-  height: 52px;
-  background: radial-gradient(circle at 50% 30%, var(--flame-core), #ff9f1c 90%);
-  box-shadow: 0 0 26px 10px var(--flame-glow);
-  opacity: 0.95;
-  animation: flicker 2.2s ease-in-out infinite;
+  width: 22px;
+  height: 60px;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    var(--flame-core) 0%,
+    #ffe070 50%,
+    #ff9f1c 85%,
+    #ff8820 100%
+  );
+  box-shadow:
+    0 0 30px 12px var(--flame-glow),
+    0 0 15px 5px rgba(255, 200, 100, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  animation: flickerCore 1.8s ease-in-out infinite;
 }
 
 .glow {
   position: absolute;
-  width: 160px;
-  height: 160px;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 169, 64, 0.35) 0%, transparent 70%);
-  filter: blur(12px);
+  background: radial-gradient(
+    circle at center,
+    var(--flame-glow) 0%,
+    rgba(255, 169, 64, 0.4) 20%,
+    rgba(255, 140, 50, 0.2) 40%,
+    transparent 70%
+  );
+  filter: blur(20px);
   opacity: 1;
-  transition: opacity var(--transition-duration) ease;
+  transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
+  animation: glowPulse 3s ease-in-out infinite;
+  z-index: 1;
 }
 
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+.body {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 90px;
+  border-radius: 10px;
+  background: transparent;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insert {
+  width: 50px;
+  height: 60px;
+  background: var(--insert-body);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.insert::before,
+.insert::after {
+  content: '';
+  width: 3px;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  border-radius: 999px;
+}
+
+.hinge {
+  position: absolute;
+  bottom: 136px;
+  left: 33px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--hinge);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.25),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.hinge::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+}
+
+.sparkWheel {
+  display: none;
+}
 
 .isClosed .lid {
   transform: rotate(0deg) translate(0, 0);
 }
 
 .isClosed .flame {
-  transform: translateY(30px) scale(0.2);
+  transform: translateX(-50%) translateY(35px) scale(0.15);
   opacity: 0;
 }
 
-.isClosed .glow,
+.isClosed .glow {
+  opacity: 0.1;
+  transform: translateX(-50%) scale(0.8);
+}
+
 .isClosed .shadow {
-  opacity: 0.15;
+  opacity: 0.2;
+  transform: translateX(-50%) scale(0.9);
 }
 
 .isClosed .case {
-  transform: translateY(4px);
+  transform: translateX(calc(-50% + 3px)) translateY(5px);
 }
 
 .isOpen .lid {
-  transform: rotate(-96deg) translate(-26px, 18px);
+  transform: rotate(-95deg);
 }
 
 .isOpen .flame {
-  transform: translateY(0) scale(1);
+  transform: translateX(-50%) translateY(0) scale(1);
   opacity: 1;
 }
 
-.isOpen .glow,
-.isOpen .shadow {
+.isOpen .glow {
   opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.isOpen .shadow {
+  opacity: 0.6;
+  transform: translateX(-50%) scale(1);
 }
 
 @keyframes flicker {
-  0% {
-    transform: scaleY(0.95) translateY(1px);
+  0%, 100% {
+    transform: scaleY(0.96) scaleX(1) translateY(0);
+  }
+  25% {
+    transform: scaleY(1.04) scaleX(0.98) translateY(-2px);
   }
   50% {
-    transform: scaleY(1.05) translateY(-3px);
+    transform: scaleY(1.02) scaleX(1.02) translateY(-4px);
   }
-  100% {
-    transform: scaleY(0.95) translateY(1px);
+  75% {
+    transform: scaleY(0.98) scaleX(1.01) translateY(-1px);
+  }
+}
+
+@keyframes flickerCore {
+  0%, 100% {
+    transform: scaleY(0.98) scaleX(1.02);
+    filter: brightness(1);
+  }
+  33% {
+    transform: scaleY(1.05) scaleX(0.96);
+    filter: brightness(1.15);
+  }
+  66% {
+    transform: scaleY(0.95) scaleX(1.03);
+    filter: brightness(0.95);
   }
 }
