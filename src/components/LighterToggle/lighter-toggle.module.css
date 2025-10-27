@@ -44,9 +44,9 @@
 
 .case {
   position: absolute;
-  bottom: 25px;
+  bottom: 27px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% + 3px));
   width: 85px;
   height: 115px;
   border-radius: 14px 14px 22px 22px;
@@ -160,12 +160,12 @@
 .lid {
   position: absolute;
   bottom: 132px;
-  left: 25px;
-  width: 100px;
-  height: 62px;
+  left: 30px;
+  width: 86px;
+  height: 54px;
   background: var(--lighter-lid);
-  border-radius: 16px 16px 8px 8px;
-  transform-origin: 7px 54px;
+  border-radius: 14px 14px 8px 8px;
+  transform-origin: 7px 48px;
   box-shadow:
     inset 0 -14px 18px rgba(0, 0, 0, 0.2),
     inset 0 2px 8px rgba(255, 255, 255, 0.15),
@@ -203,9 +203,9 @@
 }
 
 .lidEdge {
-  width: 72px;
-  height: 26px;
-  border-radius: 14px;
+  width: 64px;
+  height: 22px;
+  border-radius: 11px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
   box-shadow:
     inset 0 -8px 12px rgba(0, 0, 0, 0.2),
@@ -228,7 +228,7 @@
 
 .flame {
   position: absolute;
-  top: 28px;
+  top: 13px;
   left: 50%;
   transform: translateX(-50%) translateY(10px) scale(0.9);
   width: 52px;
@@ -373,54 +373,32 @@
 .hinge {
   position: absolute;
   bottom: 136px;
-  left: 30px;
-  width: 12px;
-  height: 12px;
+  left: 33px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--hinge);
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    0 2px 4px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+    inset 0 3px 6px rgba(0, 0, 0, 0.25),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
 .hinge::before {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 4px;
-  height: 4px;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
 }
 
 .sparkWheel {
-  position: absolute;
-  bottom: 136px;
-  right: 30px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #8b92a8 0%, #5a6071 50%, #3d4454 100%);
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.4),
-    inset 0 -2px 4px rgba(255, 255, 255, 0.15),
-    0 3px 8px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  z-index: 10;
-}
-
-.sparkWheel::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
-  border-radius: 50% 50% 0 0;
+  display: none;
 }
 
 .isClosed .lid {
@@ -443,7 +421,7 @@
 }
 
 .isClosed .case {
-  transform: translateX(-50%) translateY(5px);
+  transform: translateX(calc(-50% + 3px)) translateY(5px);
 }
 
 .isOpen .lid {
